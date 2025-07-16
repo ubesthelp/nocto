@@ -37,7 +37,7 @@ Use Nocto for:
  - Pluggable UI elements – Create your own UI plugin and install it on top of Nocto. Replace existing pages or add completely new ones wherever you want.
  - Dynamic slots – Tailor the UI by injecting your components into existing modules which are exposing the slots
 
-Learn more about [Nocto’s architecture](https://www.noctojs.com/docs/architecture) and [Nocto's configuration](https://docs.medusajs.com/resources/commerce-modules) in the Docs.
+Learn more about [Nocto’s architecture](https://www.noctojs.com/docs/architecture) and [Nocto's configuration](https://www.noctojs.com/docs/nocto-configuration) in the Docs.
 
 ## Community & Contributions
 
