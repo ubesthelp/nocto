@@ -1,0 +1,43 @@
+:root {
+  /* Serenity Light Theme */
+  --bg-base: #f4f8f9;
+  --bg-subtle: #ffffff;
+  --bg-interactive: #66a5ad;
+  --bg-interactive-hover: #568b92;
+  --bg-interactive-pressed: #467177;
+  --bg-disabled: #e3e9eb;
+  --fg-base: #2c3e50;
+  --fg-muted: #5d737e;
+  --fg-subtle: #8295a0;
+  --fg-disabled: #a8b6bf;
+  --fg-interactive: #ffffff;
+  --border-base: #dce4e7;
+  --border-strong: #c8d3d8;
+  --border-interactive: #66a5ad;
+  --icon-base: #2c3e50;
+  --icon-muted: #5d737e;
+  --icon-subtle: #8295a0;
+  --icon-disabled: #a8b6bf;
+}
+
+.dark {
+  /* Serenity Dark Theme */
+  --bg-base: #0b131a;
+  --bg-subtle: #111d26;
+  --bg-interactive: #76c0cb;
+  --bg-interactive-hover: #66a5ad;
+  --bg-interactive-pressed: #568b92;
+  --bg-disabled: #1a2c38;
+  --fg-base: #eaf4f4;
+  --fg-muted: #a8b6bf;
+  --fg-subtle: #8295a0;
+  --fg-disabled: #5d737e;
+  --fg-interactive: #0b131a;
+  --border-base: #1a2c38;
+  --border-strong: #2c3e50;
+  --border-interactive: #76c0cb;
+  --icon-base: #eaf4f4;
+  --icon-muted: #a8b6bf;
+  --icon-subtle: #8295a0;
+  --icon-disabled: #5d737e;
+}

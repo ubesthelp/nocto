@@ -1,0 +1,43 @@
+:root {
+  /* Slate Light Theme */
+  --bg-base: #ffffff;
+  --bg-subtle: #f8fafc;
+  --bg-interactive: #2563eb;
+  --bg-interactive-hover: #1d4ed8;
+  --bg-interactive-pressed: #1e40af;
+  --bg-disabled: #e2e8f0;
+  --fg-base: #0f172a;
+  --fg-muted: #475569;
+  --fg-subtle: #64748b;
+  --fg-disabled: #94a3b8;
+  --fg-interactive: #ffffff;
+  --border-base: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-interactive: #2563eb;
+  --icon-base: #0f172a;
+  --icon-muted: #475569;
+  --icon-subtle: #64748b;
+  --icon-disabled: #94a3b8;
+}
+
+.dark {
+  /* Slate Dark Theme */
+  --bg-base: #020617;
+  --bg-subtle: #0f172a;
+  --bg-interactive: #3b82f6;
+  --bg-interactive-hover: #2563eb;
+  --bg-interactive-pressed: #1d4ed8;
+  --bg-disabled: #1e293b;
+  --fg-base: #f8fafc;
+  --fg-muted: #94a3b8;
+  --fg-subtle: #64748b;
+  --fg-disabled: #475569;
+  --fg-interactive: #ffffff;
+  --border-base: #1e293b;
+  --border-strong: #334155;
+  --border-interactive: #3b82f6;
+  --icon-base: #f8fafc;
+  --icon-muted: #94a3b8;
+  --icon-subtle: #64748b;
+  --icon-disabled: #475569;
+}
