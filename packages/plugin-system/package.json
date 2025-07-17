@@ -1,6 +1,6 @@
 {
   "name": "@rsc-labs/nocto-plugin-system",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "Pluggable registry system for Nocto plugins",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

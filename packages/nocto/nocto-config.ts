@@ -28,6 +28,6 @@ export const noctoConfig: NoctoConfig = {
     "@inventory": { order: 3 },
     "@customers": { order: 4 },
     "@promotions": { order: 5 },
-    "@price-lists": { order: 6 },
+    "@price-lists": { order: 6 }
   }
 }

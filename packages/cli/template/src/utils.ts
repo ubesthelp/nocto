@@ -16,15 +16,14 @@ export async function loadMyNoctoPlugins(noctoConfig: NoctoConfig) {
     for (const key in mod) {
       const plugin = mod[key]
       if (noctoConfig.plugins[plugin.id] || noctoConfig.sidebar[plugin.id]) {
-        let config = {}
         if (plugin.configSchema) {
           const userConfig = noctoConfig.plugins?.[plugin.id]?.config ?? {}
           PluginConfigRegistry.register(plugin.id, plugin.configSchema, userConfig)
         }
 
         if (typeof plugin.routes === "function") {
-          const routes = plugin.routes(config)
-          RouteRegistry.register(routes)
+          const routes = plugin.routes()
+          RouteRegistry.register(plugin.id, routes)
         }
 
         if (plugin.sidebar) {

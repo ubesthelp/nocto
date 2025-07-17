@@ -12,7 +12,6 @@ export function loadBuiltInPlugins(noctoConfig: NoctoConfig) {
 
     if (noctoConfig.plugins[plugin.id] || noctoConfig.sidebar[plugin.id]) {
       // Load config if schema exists
-      let config = {}
       if (plugin.configSchema) {
         const userConfig = noctoConfig.plugins?.[plugin.id]?.config ?? {}
         PluginConfigRegistry.register(plugin.id, plugin.configSchema, userConfig)
@@ -20,8 +19,8 @@ export function loadBuiltInPlugins(noctoConfig: NoctoConfig) {
 
       // Register routes if defined
       if (typeof plugin.routes === "function") {
-        const routes = plugin.routes(config)
-        RouteRegistry.register(routes)
+        const routes = plugin.routes()
+        RouteRegistry.register(plugin.id, routes)
       }
 
       // Register sidebar if defined

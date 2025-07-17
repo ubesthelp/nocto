@@ -12,16 +12,15 @@ export const noctoConfig: NoctoConfig = {
         mainIcon: Sparkles
       }
     },
-    "@orders": {},
     "@order-detail": {},
-    "@campaigns-routes": {},
-    "@categories-routes": {},
-    "@collections-routes": {},
+    "@campaigns": {},
+    "@categories": {},
+    "@collections": {},
     "@core-routes": {},
-    "@customer-groups-routes": {},
+    "@customer-groups": {},
     "@public-routes": {},
-    "@reservations-routes": {},
-    "@settings-routes": {}
+    "@reservations": {},
+    "@settings": {},
   },
   sidebar: {
     "@orders": { order: 1 },

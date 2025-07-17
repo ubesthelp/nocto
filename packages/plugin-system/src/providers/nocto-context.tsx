@@ -8,7 +8,8 @@ type NoctoPluginContextType = {
   pluginConfigRegistry: typeof PluginConfigRegistry
   sidebarItems: ReturnType<typeof SidebarRegistry.getSorted>
   routes: ReturnType<typeof RouteRegistry.getAll>
-  slotsRegistry: typeof SlotRegistry
+  routesPlugins: string[]
+  slotsRegistry: typeof SlotRegistry,
 }
 
 const NoctoPluginContext = createContext<NoctoPluginContextType | undefined>(undefined)
@@ -20,9 +21,10 @@ export const NoctoPluginProvider = ({
 }) => {
   const sidebarItems = SidebarRegistry.getSorted()
   const routes = RouteRegistry.getAll()
+  const routesPlugins = RouteRegistry.getPluginsIds()
 
   return (
-    <NoctoPluginContext.Provider value={{ pluginConfigRegistry: PluginConfigRegistry, sidebarItems, routes, slotsRegistry: SlotRegistry }}>
+    <NoctoPluginContext.Provider value={{ pluginConfigRegistry: PluginConfigRegistry, sidebarItems, routes, slotsRegistry: SlotRegistry, routesPlugins: routesPlugins }}>
       {children}
     </NoctoPluginContext.Provider>
   )

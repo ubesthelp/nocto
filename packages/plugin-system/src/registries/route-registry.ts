@@ -14,21 +14,23 @@ export type RouteEntry = {
   children?: RouteEntry[]
 }
 
-const registeredRoutes: RouteEntry[] = []
+type RouteMap = Map<string, RouteEntry[]>
 
-export const RouteRegistry = {
-  register(route: RouteEntry | RouteEntry[]) {
+class PluginRouteRegistry {
+  private routesMap: RouteMap = new Map<string, RouteEntry[]>()
+
+  register(pluginId: string, route: RouteEntry | RouteEntry[]) {
     const routes = Array.isArray(route) ? route : [route]
-    registeredRoutes.push(...routes)
-  },
+    this.routesMap.set(pluginId, routes)
+  }
 
-  getAll() {
-    return registeredRoutes
-  },
+  getAll() : RouteEntry[] {
+    return Array.from(this.routesMap.values()).flat()
+  }
 
   getByLayout(layout: "main" | "auth" | "settings" | "public") {
-    return registeredRoutes.filter((r) => r.layout === layout)
-  },
+    return Array.from(this.routesMap.values()).flat().filter((r) => r.layout === layout)
+  }
   convertToRouteObject(entry: RouteEntry): RouteObject {
     if (entry.index) {
       return {
@@ -50,12 +52,17 @@ export const RouteRegistry = {
         children: entry.children?.map(this.convertToRouteObject),
       }
     }
-    
-  },
+  }
 
   getReactRouterRoutes(layout: "main" | "auth" | "settings" | "public"): RouteObject[] {
-    return registeredRoutes
+    return Array.from(this.routesMap.values()).flat()
       .filter((r) => r.layout === layout)
       .map(this.convertToRouteObject)
   }
+
+  getPluginsIds() : string[] {
+    return Array.from(this.routesMap.keys())
+  }
 }
+
+export const RouteRegistry = new PluginRouteRegistry()

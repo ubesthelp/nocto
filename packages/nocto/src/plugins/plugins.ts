@@ -19,7 +19,6 @@ import { sidebarPromotions } from "./sidebar/promotions"
 import { orderDetail } from "./default/order-detail"
 import { myPlugin } from "./custom/order-detail-slot-1"
 
-
 export const defaultPlugins: NoctoPluginDefinition[] = [
   {
     ...myPlugin
