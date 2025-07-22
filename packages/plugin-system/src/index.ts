@@ -1,5 +1,6 @@
 export { NoctoSlot } from "./components/NoctoSlot"
 export { NoctoPluginProvider, useNoctoPluginContext } from "./providers/nocto-context"
+export { NoctoRbacProvider, useNoctoRbac } from "./providers/nocto-rbac-context"
 export { SidebarRegistry } from "./registries/sidebar-registry"
 export { RouteRegistry } from "./registries/route-registry"
 export { PluginConfigRegistry } from "./registries/plugin-config-registry"

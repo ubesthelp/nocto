@@ -12,7 +12,11 @@ const filePath = path.join(distDir, "index.d.ts");
 const fileContent = `
   declare function App(props: {
     plugins?: any[],
-    noctoConfig?: any
+    noctoConfig?: any,
+    rbac?: {
+      fetchPermissions: any,
+      evaluateAccess: any
+    }
   }): JSX.Element;
 
   export default App;

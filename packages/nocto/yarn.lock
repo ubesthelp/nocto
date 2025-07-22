@@ -2743,10 +2743,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.43.0.tgz#42a88207659e404e8ffa655cae763cbad94906ab"
   integrity sha512-SnGhLiE5rlK0ofq8kzuDkM0g7FN1s5VYY+YSMTibP7CqShxCQvqtNxTARS4xX4PFJfHjG0ZQYX9iGzI3FQh5Aw==
 
-"@rsc-labs/nocto-plugin-system@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@rsc-labs/nocto-plugin-system/-/nocto-plugin-system-0.0.6.tgz#e19478c66ffbf19af1859c7affc4b14b1b9f4704"
-  integrity sha512-ikPdWLKL+G8AtH5vqVS79FQ1nDwuBfov7MMdF3/xNVfYicEAI96Ptpipwjz01noBuf3dNHUUjIp4AKtHWAKCIA==
+"@rsc-labs/nocto-plugin-system@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@rsc-labs/nocto-plugin-system/-/nocto-plugin-system-0.1.1.tgz#4c101dc6e27477f684ff6f8bddda96378fdac87e"
+  integrity sha512-+iOBSMRHfbXHCRExU7PL3if2s7MXbdSMzunFi7RdWB0RLrl+/Mqx+2rU7aouZcbyww7rzOSVGaoRTs4RqWA27w==
   dependencies:
     zod "^4.0.5"
 

@@ -1,8 +1,16 @@
+export interface RbacSlotRegistry {
+  register(contribution: SlotContribution): void
+  get(pluginId: string, slot: string): SlotContribution[];
+  getAll(): SlotContribution[];
+}
+
+
 type SlotContribution = {
   pluginId: string
   slot: string
   component: React.ComponentType<any>
-  staticProps?: Record<string, any>
+  staticProps?: Record<string, any>,
+  injectedPluginId: string
 }
 
 class SlotRegistryClass {

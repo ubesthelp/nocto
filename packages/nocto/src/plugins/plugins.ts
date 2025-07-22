@@ -18,6 +18,7 @@ import { sidebarPromotions } from "./sidebar/promotions"
 
 import { orderDetail } from "./default/order-detail"
 import { myPlugin } from "./custom/order-detail-slot-1"
+import { customInjection } from "./rbac-test/product-main-slot"
 
 export const defaultPlugins: NoctoPluginDefinition[] = [
   {
@@ -70,5 +71,8 @@ export const defaultPlugins: NoctoPluginDefinition[] = [
   },
   {
     ...orderDetail
+  },
+  {
+    ...customInjection
   }
 ]

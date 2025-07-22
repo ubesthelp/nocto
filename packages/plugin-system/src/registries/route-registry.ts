@@ -10,7 +10,8 @@ export type RouteEntry = {
   handle?: RouteObject["handle"]
   lazy?: RouteObject["lazy"],
   Component?: RouteObject["Component"],
-  loader?: RouteObject["loader"]
+  loader?: RouteObject["loader"],
+  permissions?: string[],
   children?: RouteEntry[]
 }
 
@@ -22,6 +23,10 @@ class PluginRouteRegistry {
   register(pluginId: string, route: RouteEntry | RouteEntry[]) {
     const routes = Array.isArray(route) ? route : [route]
     this.routesMap.set(pluginId, routes)
+  }
+
+  getMap() {
+    return this.routesMap;
   }
 
   getAll() : RouteEntry[] {

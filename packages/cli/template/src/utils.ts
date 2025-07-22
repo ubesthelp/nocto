@@ -34,7 +34,14 @@ export async function loadMyNoctoPlugins(noctoConfig: NoctoConfig) {
             if (SlotRegistry.get(c.pluginId, c.slot).length) {
               return;
             }
-            SlotRegistry.register({ ...c })
+            SlotRegistry.register(
+              {
+                pluginId: c.pluginId,
+                slot: c.slot,
+                component: c.component,
+                injectedPluginId: plugin.id,
+              }
+            )
           })
         }
       }

@@ -1,7 +1,4 @@
-type SidebarPlugin = {
-  id: string,
-  sidebar: SidebarItem
-}
+import { NoctoPluginDefinition } from "../types/nocto-plugin"
 
 export type SidebarItem = {
   path: string
@@ -16,11 +13,12 @@ type FinalSidebarItem = {
   path: string
   label: string
   icon?: React.ComponentType<{ className?: string }>
-  order: number
+  order: number,
+  permissions?: string[]
   items?: SidebarItem[]
 }
 
-type SidebarConfigMap = Record<string, { order?: number; hidden?: boolean }>
+type SidebarConfigMap = Record<string, { order?: number}>
 
 const items = new Map<string, SidebarItem>()
 
@@ -31,8 +29,10 @@ class SidebarRegistryClass {
     this.sidebarConfig = config
   }
 
-  register(plugin: SidebarPlugin) {
-    items.set(plugin.id, plugin.sidebar)
+  register(plugin: NoctoPluginDefinition) {
+    if (plugin.sidebar) {
+      items.set(plugin.id, plugin.sidebar)
+    }
   }
 
   getAll(): FinalSidebarItem[] {
