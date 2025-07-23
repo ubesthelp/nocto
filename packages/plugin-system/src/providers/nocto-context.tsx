@@ -4,7 +4,7 @@ import { RbacSlotRegistry, SlotRegistry } from "../registries/slot-registry"
 import { useNoctoRbac } from "./nocto-rbac-context"
 import { PluginConfigRegistry } from "../registries/plugin-config-registry"
 import { SidebarRegistry } from "../registries/sidebar-registry"
-import { RouteRegistry } from "../registries/route-registry"
+import { RouteEntry, RouteRegistry } from "../registries/route-registry"
 
 type NoctoPluginContextType = {
   pluginConfigRegistry: typeof PluginConfigRegistry
@@ -22,18 +22,28 @@ export const NoctoPluginProvider = ({
   children: React.ReactNode
 }) => {
 
-  const checkAccess = useNoctoRbac()
+  const { checkAccess, isReady } = useNoctoRbac()
 
   const [sidebarItems, setSidebarItems] = React.useState<ReturnType<typeof SidebarRegistry.getSorted>>([])
+  const [accessibleRoutes, setAccessibleRoutes] = React.useState<RouteEntry[]>([])
 
   React.useEffect(() => {
+    if (!isReady) return;
     const allSidebarItems = SidebarRegistry.getSorted()
     const filtered = allSidebarItems.filter(item => checkAccess({
       pluginId: item.id
     }))
 
     setSidebarItems(filtered)
-  }, [checkAccess])
+
+    const routesMap = RouteRegistry.getMap()
+    const filteredRoutesMap = new Map<string, RouteEntry[]>(
+      Array.from(routesMap.entries())
+        .filter(([pluginId, _]) => checkAccess({ pluginId }))
+    )
+    setAccessibleRoutes(Array.from(filteredRoutesMap.values()).flat())
+
+  }, [checkAccess, isReady])
 
   const rbacSlotRegistry: RbacSlotRegistry = useMemo(() => {
     return {
@@ -56,17 +66,16 @@ export const NoctoPluginProvider = ({
   }, [checkAccess])
 
   if (!rbacSlotRegistry) return null
- 
-  const routes = RouteRegistry.getAll()
+
   const routesPlugins = RouteRegistry.getPluginsIds()
 
   return (
     <NoctoPluginContext.Provider value={{ 
       pluginConfigRegistry: PluginConfigRegistry, 
       sidebarItems: sidebarItems, 
-      routes, 
+      routes: accessibleRoutes, 
       slotsRegistry: rbacSlotRegistry, 
-      routesPlugins: routesPlugins 
+      routesPlugins: routesPlugins,
     }}>
       {children}
     </NoctoPluginContext.Provider>

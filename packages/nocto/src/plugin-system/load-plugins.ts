@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 
-import { SidebarRegistry, RouteRegistry, NoctoConfig, PluginConfigRegistry, SlotRegistry } from "@rsc-labs/nocto-plugin-system"
+import { SidebarRegistry, NoctoConfig, PluginConfigRegistry, RouteRegistry, SlotRegistry } from "@rsc-labs/nocto-plugin-system"
 import { defaultPlugins } from "../plugins/plugins"
 
 export function loadBuiltInPlugins(noctoConfig: NoctoConfig) {

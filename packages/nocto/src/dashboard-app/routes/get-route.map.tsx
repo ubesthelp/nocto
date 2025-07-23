@@ -5,6 +5,7 @@ import { PublicLayout } from "../../components/layout/public-layout"
 import { SettingsLayout } from "../../components/layout/settings-layout"
 import { ErrorBoundary } from "../../components/utilities/error-boundary"
 import { mapPluginRoutes } from "./utils"
+import { Spinner } from "@medusajs/icons"
 import { useNoctoPluginContext } from "@rsc-labs/nocto-plugin-system"
 
 export function getRouteMap({
@@ -15,6 +16,19 @@ export function getRouteMap({
   coreRoutes: RouteObject[]
 }) {
   const { routes } = useNoctoPluginContext()
+
+  if (!routes.length) {
+    return [
+      {
+        path: "*",
+        element: (
+          <div className="flex min-h-screen items-center justify-center">
+            <Spinner className="text-ui-fg-interactive animate-spin" />
+          </div>
+        )
+      },
+    ]
+  }
 
   const authRoutes = routes.filter((r) => r.layout === "auth")
   const mainRoutes = routes.filter((r) => r.layout === "main")

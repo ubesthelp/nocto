@@ -3,30 +3,40 @@ import React from "react"
 type VisibilityContext = {
   pluginId: string,
 }
-
-type NoctoRbacCheck = (ctx: VisibilityContext) => boolean | Promise<boolean>
 type PermissionsMap = Map<string, string[]>
 
+type NoctoRbacCheck = (ctx: VisibilityContext) => boolean | Promise<boolean>
+
 type RBACContextType = {
-  checkAccess: NoctoRbacCheck
+  checkAccess: NoctoRbacCheck,
+  isReady: boolean
 }
 
 const NoctoRbacContext = React.createContext<RBACContextType>({
-  checkAccess: () => true
+  checkAccess: () => true,
+  isReady: false
 })
+
+const defaultRbac = {
+  fetchPermissions: () => { 
+    return Promise.resolve(new Map<string, string[]>());
+  },
+  evaluateAccess: () => true
+};
 
 export const NoctoRbacProvider = ({
   children,
   user,
   isLoading,
-  fetchPermissions,
-  evaluateAccess = () => true
+  rbac = defaultRbac
 }: {
   children: React.ReactNode
   user?: any,
-  isLoading?: boolean
-  fetchPermissions?: (userId: string) => Promise<PermissionsMap>,
-  evaluateAccess?: (permissions?: string[]) => boolean | Promise<boolean>
+  isLoading?: boolean,
+  rbac?: {
+    fetchPermissions: (userId: string) => Promise<PermissionsMap>,
+    evaluateAccess: (permissions?: string[]) => boolean | Promise<boolean>
+  }
 }) => {
 
   const [permissions, setPermissions] = React.useState<PermissionsMap | undefined>()
@@ -34,24 +44,25 @@ export const NoctoRbacProvider = ({
   React.useEffect(() => {
     if (!user || isLoading) return
 
-    if (!fetchPermissions || !user) return
+    if (!rbac.fetchPermissions || !user) return
 
-    fetchPermissions(user.id).then(setPermissions)
+    rbac.fetchPermissions(user.id).then(setPermissions)
 
-  }, [fetchPermissions, user])
+  }, [rbac.fetchPermissions, user])
 
   const checkAccess: NoctoRbacCheck = ({ pluginId }) => {
-    return evaluateAccess(permissions?.get(pluginId));
+    return rbac.evaluateAccess(permissions?.get(pluginId));
   }
 
+  const isReady = !!permissions || !rbac
+
   return (
-    <NoctoRbacContext.Provider value={{ checkAccess }}>
+    <NoctoRbacContext.Provider value={{ checkAccess, isReady }}>
       {children}
     </NoctoRbacContext.Provider>
   )
 }
 
 export const useNoctoRbac = () => {
-  const ctx = React.useContext(NoctoRbacContext)
-  return ctx.checkAccess
+  return React.useContext(NoctoRbacContext)
 }

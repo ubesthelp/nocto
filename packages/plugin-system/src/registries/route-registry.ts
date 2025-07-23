@@ -33,38 +33,6 @@ class PluginRouteRegistry {
     return Array.from(this.routesMap.values()).flat()
   }
 
-  getByLayout(layout: "main" | "auth" | "settings" | "public") {
-    return Array.from(this.routesMap.values()).flat().filter((r) => r.layout === layout)
-  }
-  convertToRouteObject(entry: RouteEntry): RouteObject {
-    if (entry.index) {
-      return {
-        index: true,
-        path: entry.path,
-        element: entry.element,
-        errorElement: entry.errorElement,
-        handle: entry.handle,
-        lazy: entry.lazy,
-      }
-    } else {
-      return {
-        index: false,
-        path: entry.path,
-        element: entry.element,
-        errorElement: entry.errorElement,
-        handle: entry.handle,
-        lazy: entry.lazy,
-        children: entry.children?.map(this.convertToRouteObject),
-      }
-    }
-  }
-
-  getReactRouterRoutes(layout: "main" | "auth" | "settings" | "public"): RouteObject[] {
-    return Array.from(this.routesMap.values()).flat()
-      .filter((r) => r.layout === layout)
-      .map(this.convertToRouteObject)
-  }
-
   getPluginsIds() : string[] {
     return Array.from(this.routesMap.keys())
   }

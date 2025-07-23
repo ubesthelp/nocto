@@ -7,6 +7,6 @@ import "./index.css"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App noctoConfig={noctoConfig} />
+    <App noctoConfig={noctoConfig}/>
   </React.StrictMode>
 )
