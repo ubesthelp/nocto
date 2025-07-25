@@ -17,25 +17,18 @@ const NoctoRbacContext = React.createContext<RBACContextType>({
   isReady: false
 })
 
-const defaultRbac = {
-  fetchPermissions: () => { 
-    return Promise.resolve(new Map<string, string[]>());
-  },
-  evaluateAccess: () => true
-};
-
 export const NoctoRbacProvider = ({
   children,
   user,
   isLoading,
-  rbac = defaultRbac
+  rbac
 }: {
   children: React.ReactNode
   user?: any,
   isLoading?: boolean,
   rbac?: {
-    fetchPermissions: (userId: string) => Promise<PermissionsMap>,
-    evaluateAccess: (permissions?: string[]) => boolean | Promise<boolean>
+    fetchPermissions?: (userId: string) => Promise<PermissionsMap>,
+    evaluateAccess?: (permissions?: string[]) => boolean | Promise<boolean>
   }
 }) => {
 
@@ -44,14 +37,17 @@ export const NoctoRbacProvider = ({
   React.useEffect(() => {
     if (!user || isLoading) return
 
-    if (!rbac.fetchPermissions || !user) return
+    if (!rbac || !rbac.fetchPermissions || !user) return
 
     rbac.fetchPermissions(user.id).then(setPermissions)
 
-  }, [rbac.fetchPermissions, user])
+  }, [rbac, user])
 
   const checkAccess: NoctoRbacCheck = ({ pluginId }) => {
-    return rbac.evaluateAccess(permissions?.get(pluginId));
+    if (rbac && rbac.evaluateAccess !== undefined) {
+      return rbac.evaluateAccess(permissions?.get(pluginId));
+    }
+    return true
   }
 
   const isReady = !!permissions || !rbac

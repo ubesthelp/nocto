@@ -1,6 +1,6 @@
 {
   "name": "@rsc-labs/create-nocto-app",
-  "version": "0.0.17",
+  "version": "0.0.20",
   "bin": {
     "create-nocto-app": "index.js"
   },
