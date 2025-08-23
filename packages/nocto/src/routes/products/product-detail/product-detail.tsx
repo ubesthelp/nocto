@@ -12,6 +12,7 @@ import { ProductSalesChannelSection } from "./components/product-sales-channel-s
 import { ProductVariantSection } from "./components/product-variant-section"
 import { PRODUCT_DETAIL_FIELDS } from "./constants"
 import { productLoader } from "./loader"
+import { NoctoSlot } from "@rsc-labs/nocto-plugin-system"
 
 import { useExtension } from "../../../providers/extension-provider"
 import { ProductShippingProfileSection } from "./components/product-shipping-profile-section"
@@ -65,16 +66,16 @@ export const ProductDetail = () => {
       data={product}
     >
       <TwoColumnPage.Main>
-        <ProductGeneralSection product={product} />
-        <ProductMediaSection product={product} />
-        <ProductOptionSection product={product} />
-        <ProductVariantSection product={product} />
+        <NoctoSlot pluginId="@product-detail" name="general" runtimeProps={{ product }} fallback={<ProductGeneralSection product={product} />}/>
+        <NoctoSlot pluginId="@product-detail" name="media" runtimeProps={{ product }} fallback={<ProductMediaSection product={product} />}/>
+        <NoctoSlot pluginId="@product-detail" name="option" runtimeProps={{ product }} fallback={<ProductOptionSection product={product} />}/>
+        <NoctoSlot pluginId="@product-detail" name="variant" runtimeProps={{ product }} fallback={<ProductVariantSection product={product} />}/>
       </TwoColumnPage.Main>
       <TwoColumnPage.Sidebar>
-        <ProductSalesChannelSection product={product} />
-        <ProductShippingProfileSection product={product} />
-        <ProductOrganizationSection product={product} />
-        <ProductAttributeSection product={product} />
+        <NoctoSlot pluginId="@product-detail" name="salesChannel" runtimeProps={{ product }} fallback={<ProductSalesChannelSection product={product} />}/>
+        <NoctoSlot pluginId="@product-detail" name="shippingProfile" runtimeProps={{ product }} fallback={<ProductShippingProfileSection product={product} />}/>
+        <NoctoSlot pluginId="@product-detail" name="organization" runtimeProps={{ product }} fallback={<ProductOrganizationSection product={product} />}/>
+        <NoctoSlot pluginId="@product-detail" name="attribute" runtimeProps={{ product }} fallback={<ProductAttributeSection product={product} />}/>
       </TwoColumnPage.Sidebar>
     </TwoColumnPage>
   )
