@@ -11,7 +11,7 @@ export const sidebarOrders = {
   }),
   sidebar: {
     path: "/orders",
-    label: "Orders",
+    label: "订单",
     icon: ShoppingCart,
   },
   routes: (): RouteEntry[] => [

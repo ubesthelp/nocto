@@ -9,11 +9,11 @@ export const sidebarPromotions = {
   id: "@promotions",
   sidebar: {
     path: "/promotions",
-    label: "Promotions",
+    label: "促销活动",
     icon: ReceiptPercent,
     items: [
       {
-        label: "Campaigns",
+        label: "营销活动",
         path: "/campaigns",
       },
     ],

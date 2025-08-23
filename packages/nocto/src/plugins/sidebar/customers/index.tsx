@@ -9,12 +9,12 @@ export const sidebarCustomers = {
   id: "@customers",
   sidebar: {
     path: "/customers",
-    label: "Customers",
+    label: "客户",
     icon: Users,
     items: [
       {
         path: "/customer-groups",
-        label: "Customer groups",
+        label: "客户群组",
       }
     ],
   },

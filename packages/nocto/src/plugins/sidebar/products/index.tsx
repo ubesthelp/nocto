@@ -10,16 +10,20 @@ export const sidebarProducts = {
   id: "@products",
   sidebar: {
     path: "/products",
-    label: "Products",
+    label: "产品",
     icon: Tag,
     items: [
       {
         path: "/collections",
-        label: "Collections",
+        label: "系列",
       },
       {
         path: "/categories",
-        label: "Categories",
+        label: "分类",
+      },
+      {
+        path: "/brands",
+        label: "品牌",
       },
     ],
   },

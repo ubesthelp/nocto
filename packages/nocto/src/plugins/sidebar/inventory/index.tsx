@@ -9,12 +9,12 @@ export const sidebarInventory = {
   id: "@inventory",
   sidebar: {
     path: "/inventory",
-    label: "Inventory",
+    label: "库存",
     icon: Buildings,
     items: [
       {
         path: "/reservations",
-        label: "Reservations",
+        label: "预订",
       }
     ],
   },

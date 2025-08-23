@@ -10,7 +10,7 @@ export const sidebarPriceLists = {
   id: "@price-lists",
   sidebar: {
     path: "/price-lists",
-    label: "Price lists",
+    label: "价格列表",
     icon: CurrencyDollar,
   },
   routes: (): RouteEntry[] => [
